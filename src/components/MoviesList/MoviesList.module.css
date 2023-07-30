@@ -1,0 +1,23 @@
+.gallary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.card_container {
+  max-width: 600px;
+  width: 100%;
+}
+
+.modal_img_wrap {
+  width: 248px;
+  height: 315px;
+  border-radius: 5px;
+}
+.modal_video_img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
