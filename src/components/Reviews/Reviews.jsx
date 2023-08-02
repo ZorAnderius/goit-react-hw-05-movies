@@ -7,8 +7,6 @@ import { Loader } from 'components/Loader/Loader';
 
 import default_url from '../../images/default_cat.jpeg';
 
-const IMG_URL = 'https://image.tmdb.org/t/p/original';
-
 export const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState();

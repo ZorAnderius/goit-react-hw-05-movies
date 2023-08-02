@@ -15,22 +15,16 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState();
   const { movieId } = useParams();
 
-  const [isLoading, setLoading] = useState(false);
-
   useEffect(() => {
     const getMovie = async movieId => {
-      setLoading(true);
       try {
         const { data } = await getMovieById(movieId);
         if (data) {
           setMovie(data);
-          setLoading(false);
         } else {
           throw new Error('Unvalid movie');
         }
-      } catch (err) {
-        setLoading(false);
-      }
+      } catch (err) {}
     };
     getMovie(movieId);
   }, [movieId]);
