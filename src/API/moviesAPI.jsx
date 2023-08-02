@@ -26,6 +26,8 @@ const TRENDING_END_POINT = 'trending/movie/';
 const POPULAR_MOVIES = 'movie/popular/';
 const MOVIE_END_POINT = 'movie/';
 const SEARCH_KEYWORD_END_POINT = 'search/movie';
+const CAST_END_POINT = '/credits';
+const REVIEWS_END_POINT = '/reviews';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 
@@ -56,4 +58,16 @@ export async function getMovieByKeyword(keyword) {
       page: 1,
     },
   });
+}
+
+export async function getMovieCastByMovieId(movieId) {
+  return await axios(
+    `${MOVIE_END_POINT}${movieId}${CAST_END_POINT}?api_key=${API_KEY}`
+  );
+}
+
+export async function getMovieReviewsByMovieId(movieId) {
+  return await axios(
+    `${MOVIE_END_POINT}${movieId}${REVIEWS_END_POINT}?api_key=${API_KEY}`
+  );
 }

@@ -1,0 +1,10 @@
+.back_btn {
+  display: block;
+  margin-top: 20px;
+
+  margin-bottom: 20px;
+  max-width: 100px;
+  width: 100%;
+  max-height: 30px;
+  height: 100%;
+}

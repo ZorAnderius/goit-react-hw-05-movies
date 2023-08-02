@@ -1,4 +1,5 @@
 import movieInfoCSS from './MovieDetailsInfo.module.css';
+import propTypes from 'prop-types';
 
 export const MovieDetailsInfo = ({ movieInfo }) => {
   const { url, userScore, releaseYear, title, overview, genresStr } = movieInfo;
@@ -12,16 +13,22 @@ export const MovieDetailsInfo = ({ movieInfo }) => {
           <p>{title}</p>
           <p>{`(${releaseYear})`}</p>
         </div>
-        <p className={movieInfoCSS.score_detail}>User Score: {userScore}</p>
+        <div className={movieInfoCSS.score_detail}>
+          User Score: <p className={movieInfoCSS.movie_data}>{userScore}</p>
+        </div>
         <div className={movieInfoCSS.overview_wrap}>
           <p>Overview</p>
-          <p>{overview}</p>
+          <p className={movieInfoCSS.movie_data}>{overview}</p>
         </div>
         <div className={movieInfo.genres_wrap}>
           <p>Genres</p>
-          <p>{genresStr}</p>
+          <p className={movieInfoCSS.movie_data}>{genresStr}</p>
         </div>
       </div>
     </div>
   );
+};
+
+MovieDetailsInfo.propTypes = {
+  movieInfo: propTypes.shape().isRequired,
 };

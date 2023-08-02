@@ -1,8 +1,10 @@
 import { getMoviesTrending } from 'API/moviesAPI';
 import { MovieList } from 'components/MoviesList/MoviesList';
+import { ScrollUp } from 'components/ScrollUp/ScrollUp';
+import { Title } from 'components/Title/Title';
 import { useEffect, useState } from 'react';
 
-export const Home = () => {
+const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -24,8 +26,11 @@ export const Home = () => {
 
   return (
     <main>
-      <h1>Trending movie</h1>
+      <Title>Trending movie</Title>
       <MovieList movies={movies} />
+      <ScrollUp />
     </main>
   );
 };
+
+export default Home;

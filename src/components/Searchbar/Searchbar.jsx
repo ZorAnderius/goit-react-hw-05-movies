@@ -1,15 +1,19 @@
 import { IconButton } from 'components/IconButton/IconButton';
 import searchBarCSS from './Searchbar.module.css';
 
+import propTypes from 'prop-types';
+
 import { ReactComponent as SearchIcon } from '../../icons/search-icon.svg';
 
 export const Searchbar = ({
   valueInput,
   setSearchParams,
   onSearchByKeyword,
+  firstRender,
 }) => {
   const onChangeMovieTitle = ({ target: { value } }) => {
     setSearchParams({ query: value });
+    firstRender.current = false;
   };
 
   const onSubmit = evt => {
@@ -17,7 +21,7 @@ export const Searchbar = ({
     onSearchByKeyword(valueInput);
   };
   return (
-    <div>
+    <div className={searchBarCSS.form_wrapper}>
       <form onSubmit={onSubmit} className={searchBarCSS.formSearch}>
         <input
           className={searchBarCSS.inputSearch}
@@ -30,12 +34,15 @@ export const Searchbar = ({
         />
 
         <IconButton type="submit">
-          <SearchIcon width="35" height="35" />
+          <SearchIcon width="26" height="26" />
         </IconButton>
       </form>
     </div>
   );
 };
 
-// https://api.themoviedb.org/3/search/movie/?api_key=d277c204a2c30c818c2befd49f072a72&query=bat&page=1
-// https://api.themoviedb.org/3/search/movie?api_key=d277c204a2c30c818c2befd49f072a72&query=batman&total_pages=40
+Searchbar.propTypes = {
+  valueInput: propTypes.string.isRequired,
+  setSearchParams: propTypes.func.isRequired,
+  onSearchByKeyword: propTypes.func.isRequired,
+};

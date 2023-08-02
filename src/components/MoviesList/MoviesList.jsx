@@ -1,6 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
+import propTypes from 'prop-types';
 
 import movieCSS from './MoviesList.module.css';
+import defaultPoster from '../../images/default_cat.jpeg';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/original';
 
@@ -12,8 +14,8 @@ export const MovieList = ({ movies }) => {
       : location.pathname;
   return (
     <ul className={movieCSS.gallary}>
-      {movies.map(({ id, poster_path, title, overview }) => {
-        const url = IMG_URL + poster_path;
+      {movies.map(({ id, poster_path, title }) => {
+        const url = poster_path ? `${IMG_URL}${poster_path}` : defaultPoster;
 
         return (
           <li key={id} className={movieCSS.card_container}>
@@ -25,12 +27,17 @@ export const MovieList = ({ movies }) => {
                   alt={title}
                 />
               </div>
-              <p>{title}</p>
-              <p>{overview}</p>
+              <div className={movieCSS.title_wrap}>
+                <p className={movieCSS.movie_title}>{title}</p>
+              </div>
             </Link>
           </li>
         );
       })}
     </ul>
   );
+};
+
+MovieList.propTypes = {
+  movies: propTypes.arrayOf(propTypes.shape).isRequired,
 };
