@@ -1,5 +1,4 @@
 import { getMovieByKeyword, getMoviesPopular } from 'API/moviesAPI';
-import { Loader } from 'components/Loader/Loader';
 import { MovieList } from 'components/MoviesList/MoviesList';
 import { ScrollUp } from 'components/ScrollUp/ScrollUp';
 import { Searchbar } from 'components/Searchbar/Searchbar';
