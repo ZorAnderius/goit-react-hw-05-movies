@@ -9,18 +9,14 @@ import { useSearchParams } from 'react-router-dom';
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [isLoading, setLoading] = useState(false);
 
   const querySearchParam = searchParams.get('query') ?? '';
 
   const onSearchByKeyword = async query => {
-    setLoading(true);
     try {
       const { data } = await getMovieByKeyword(query);
       setMovies(data.results);
-      setLoading(false);
     } catch (e) {
-      setLoading(false);
       console.log('error', e.message);
     }
   };
@@ -38,13 +34,10 @@ const Movies = () => {
   }, [querySearchParam, setSearchParams]);
 
   const getMovies = useCallback(async () => {
-    setLoading(true);
     try {
       const { data } = await getMoviesPopular();
       setMovies(data.results);
-      setLoading(false);
     } catch (e) {
-      setLoading(false);
       console.log('error', e.message);
     }
   }, [setMovies]);
@@ -70,8 +63,6 @@ const Movies = () => {
         onSearchByKeyword={onSearchByKeyword}
       />
       <MovieList movies={movies} />
-      {isLoading && <Loader />}
-
       <ScrollUp />
     </main>
   );
